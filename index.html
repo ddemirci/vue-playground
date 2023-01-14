@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title> Shopping List App</title>
+    </head>
+    <body>
+        <div id="shopping-list">
+            <!-- Moustache syntax -->
+            <h1>{{ header}} </h1>
+            <input v-model="header"> 
+        </div>
+        
+    </body>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        // If we create a variable, we are able to use it in console.
+        const shoppingList = Vue.createApp({
+            data(){
+                return{
+                    header: 'This is my shopping list'
+                }
+            }
+        })
+        .mount('#shopping-list') // Entry point for Vue
+    </script>
+</html>
