@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title> Shopping List App</title>
+    </head>
+    <body>
+        <div id="shopping-list">
+            <!-- We can use template expressions but cannot declare a variable etc.-->
+            <!-- Below is forbidden  -->
+            <!-- {{var x  = 5}} -->
+            <h1>{{ header || 'Welcome'}} </h1>
+            <input v-model="header"> 
+        </div>
+        
+    </body>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        const shoppingList = Vue.createApp({
+            data(){
+                return{
+                    header: 'This is my shopping list'
+                }
+            }
+        })
+        .mount('#shopping-list') // Entry point for Vue
+    </script>
+</html>
