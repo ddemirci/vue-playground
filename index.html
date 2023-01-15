@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title> Shopping List App</title>
+    </head>
+    <body>
+        <div id="shopping-list">
+            <h1>{{ header || 'Welcome'}} </h1>
+            <input v-model="header"> 
+            <ul>
+                <!-- <li v-for="item in items" :key="item.id">{{item.id}} - {{item.label}}</li> -->
+                <li v-for="{id,label} in items" :key="id">{{id}} - {{label}}</li>
+            </ul>
+        </div>
+        
+    </body>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script>
+        const shoppingList = Vue.createApp({
+            data(){
+                return{
+                    header: 'This is my shopping list',
+                    items: [
+                        {id: 1, label: "Notebook"},
+                        {id: 2, label: "Pen"},
+                        {id: 3, label: "Eraser"},
+                    ]
+                }
+            }
+        })
+        .mount('#shopping-list') // Entry point for Vue
+    </script>
+</html>
