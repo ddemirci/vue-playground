@@ -13,10 +13,10 @@
                 <li v-for="{id,label} in items" :key="id">{{id}} - {{label}}</li>
             </ul>
         </div>
-        
     </body>
     <script src="https://unpkg.com/vue@3"></script>
     <script>
+        //Because we create a variable called `shoppingList`, we can manipulate the list from the console of the browser.
         const shoppingList = Vue.createApp({
             data(){
                 return{
