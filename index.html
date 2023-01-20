@@ -9,11 +9,11 @@
             <h1>{{ header || 'Welcome'}} </h1>
             <div class="add-item-form">
                 <input 
-                    @keyup.enter="items.push({ id:items.length + 1, label: newItem })" 
+                    @keyup.enter="saveItem('enter')" 
                     type="text" 
                     v-model="newItem" 
                     placeholder="Add an Item" >
-                <button @click="items.push({ id:items.length + 1, label: newItem })">
+                <button @click="saveItem('button')">
                     Save Item
                 </button>                
                 
@@ -37,6 +37,14 @@
                         {id: 2, label: "Pen"},
                         {id: 3, label: "Eraser"},
                     ]
+                }
+            },
+            methods:{
+                // Arrow functions are not allowed, we would lose 'this' functionality
+                saveItem(source){
+                    this.items.push({ id: this.items.length + 1, label: this.newItem })
+                    this.newItem = ''
+                    console.log('Added via', source);
                 }
             }
         })
