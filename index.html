@@ -6,8 +6,13 @@
     </head>
     <body>
         <div id="shopping-list">
-            <h1>{{ header || 'Welcome'}} </h1>
-            <div class="add-item-form">
+            <div class="header">
+                <h1>{{ header || 'Welcome'}} </h1>
+                <button class="btn" @click="setEditing(true)">Edit</button>
+                <button class="btn" @click="setEditing(false)">Cancel</button>
+            </div>
+            <br>
+            <div v-if="editing" class="add-item-form">
                 <input 
                     @keyup.enter="saveItem('enter')" 
                     type="text" 
@@ -16,12 +21,16 @@
                 <button @click="saveItem('button')">
                     Save Item
                 </button>                
-                
             </div>
-            <ul>
+            <br>
+            <div v-if="items.length == 0" >
+                There is nothing in your shopping list
+            </div>
+            <ul v-else>
                 <!-- <li v-for="item in items" :key="item.id">{{item.id}} - {{item.label}}</li> -->
                 <li v-for="{id,label} in items" :key="id">{{id}} - {{label}}</li>
             </ul>
+            
         </div>
     </body>
     <script src="https://unpkg.com/vue@3"></script>
@@ -31,11 +40,9 @@
             data(){
                 return{
                     header: 'This is my shopping list',
+                    editing: false,
                     newItem: null,
                     items: [
-                        {id: 1, label: "Notebook"},
-                        {id: 2, label: "Pen"},
-                        {id: 3, label: "Eraser"},
                     ]
                 }
             },
@@ -45,6 +52,9 @@
                     this.items.push({ id: this.items.length + 1, label: this.newItem })
                     this.newItem = ''
                     console.log('Added via', source);
+                },
+                setEditing(editing){
+                    this.editing = editing
                 }
             }
         })
