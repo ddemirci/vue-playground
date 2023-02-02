@@ -19,8 +19,9 @@
                     type="text" 
                     v-model="newItem" 
                     placeholder="Add an Item" >
+                    <p class="character"> {{characterCount}}/200 </p>
                 <button 
-                    :disabled="newItem.length == 0" 
+                    :disabled="newItem.length == 0|| newItem.length>200" 
                     @click="saveItem('button')">
                     Save Item
                 </button>                
@@ -56,6 +57,13 @@
                     ]
                 }
             },
+            // If we don't want to mutate our data, we should use computed section
+            computed:{
+                characterCount(){
+                    return this.newItem.length
+                }
+            },
+            // If we want to mutate our data, we should use methods section
             methods:{
                 // Arrow functions are not allowed, we would lose 'this' functionality
                 saveItem(source){
